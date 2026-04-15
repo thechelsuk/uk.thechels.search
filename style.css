@@ -1,1 +1,94 @@
+    #script-enabled {
+        display: none;
+        /*Set to flex in JS*/
+        flex-direction: column;
+        gap: 2rem;
+        max-inline-size: 40rem;
+        margin-inline: auto;
+    }
 
+    #search-form {
+        display: flex;
+
+        input {
+            inline-size: 100%;
+        }
+
+        svg {
+            block-size: 1.3rem;
+            margin-block: auto;
+        }
+
+        &:focus-within {
+            outline: var(--blue) solid 2px;
+        }
+    }
+
+    .default-engine {
+        margin-inline: auto;
+    }
+
+    #engine-select {
+        display: block;
+    }
+
+    .shortcode-list-wrap {
+        text-align: left;
+    }
+
+    ul {
+        list-style-type: "! ";
+        padding-inline-start: 2rem;
+    }
+
+    #shortcode-list {
+        columns: 3;
+        column-gap: 2rem;
+        column-rule: 1px solid #000;
+        list-style: none;
+        padding-inline-start: 0;
+        margin: 0;
+    }
+
+    #shortcode-list li {
+        break-inside: avoid;
+        padding-inline: 0.25rem;
+    }
+
+    button,
+    select,
+    input {
+        color: #000;
+        background: #fff;
+        padding-block: 0.3rem;
+        padding-inline: 0.5rem;
+        border: 1px solid #000;
+        border-radius: 0;
+        font-family: inherit;
+        font-weight: initial;
+        font-size: 1rem;
+    }
+
+    input {
+        padding-block: 0.5rem;
+    }
+
+    label {
+        font-size: small;
+    }
+
+    button {
+        display: grid;
+    }
+
+    #search-form svg {
+        fill: #000;
+    }
+
+    ::placeholder {
+        opacity: 1;
+    }
+
+    :focus {
+        outline: var(--blue) solid 2px;
+    }
