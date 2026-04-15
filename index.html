@@ -1,96 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <title>Search @ thechelsuk</title>
-        <meta name="title" content="Toolkit">
-        <meta name="description" content="Toolkit">
+        <meta name="title" content="Search Router">
+        <meta name="description" content="Fast search routing with bangs, snaps, and a shortcut atlas.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="format-detection" content="telephone=no">
         <meta name="format-detection" content="address=no">
         <meta name="HandheldFriendly" content="True">
-        <meta name="theme-color" content="#005CA3">
+        <meta name="theme-color" content="#0a5cff">
         <meta name="robots" content="index,follow">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-touch-fullscreen" content="yes">
         <meta name="apple-mobile-web-app-title" content="thechelsuk">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        <link rel="stylesheet" href="/style.css">
-        <script src="script.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
     </head>
+
     <body>
         <div id="outer-wrapper">
-            <div id="wrapper">
-                <header id="header">
+            <div id="wrapper" class="page-shell" data-mode="bang">
+                <header id="header" class="site-header">
                     <ul class="skip-link-ul">
                         <li>
                             <a href="#main" class="skip-link">Skip to main content</a>
                         </li>
                     </ul>
-                    <div class="blog-title">
-                        <a href="/">thechelsuk</a> <sup class="asterisk" id="top">*</sup>
-                    </div>
-                    <div class="blog-image"></div>
-                    <p class="blog-slogan">
-                        // Search Router
-                    </p>
                 </header>
                 <main id="main" class="content">
-<h1 class="post-title">Search</h1>
-<noscript>
-    <p>This app requires JavaScript to function, but it isn't enabled in your browser.</p>
-</noscript>
-<div id="script-enabled">
-    <form id="search-form">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button type="submit" id="search-button">
-            <svg viewBox="0 -960 960 960">
-                <title>Search</title>
-                <path
-                    d="M774-118 533-359q-30 21-70.29 33-40.29 12-81.68 12Q271-314 194-391t-77-187q0-110 77-187t187-77q110 0 187 77t77 187.03q0 41.39-11 79.18Q623-461 601-429l242 242-69 69ZM381-412q70 0 118-48t48-118q0-70-48-118t-118-48q-70 0-118 48t-48 118q0 70 48 118t118 48Z" />
-            </svg>
-        </button>
-    </form>
+                    <section class="hero panel">
+                        <div class="hero-header">
+                            <h1 class="post-title" id="top">Search <sup class="asterisk">*</sup> <a
+                                    href="/">thechelsuk</a></h1>
+                            <p class="hero-intro">Add <strong>!bangs</strong> to jump to site search, or use
+                                <strong>@snaps</strong>, including raw domains like <strong>@thechels.uk</strong>,
+                                to search your default engine with a <code>site:</code> filter.
+                            </p>
+                        </div>
+                        <noscript>
+                            <p class="noscript-note">This app requires JavaScript to function, but it is not enabled in
+                                your browser.</p>
+                        </noscript>
+                        <div id="script-enabled" class="control-deck" hidden>
+                            <form id="search-form" class="search-form" autocomplete="off">
+                                <label class="visually-hidden" for="search-input">Search query</label>
+                                <input type="text" id="search-input"
+                                    placeholder="Try !yt ambient mix or @reddit.com r/python" spellcheck="false"
+                                    enterkeyhint="search">
+                                <button type="submit" id="search-button" aria-label="Search">
+                                    <svg viewBox="0 -960 960 960" aria-hidden="true">
+                                        <path
+                                            d="M774-118 533-359q-30 21-70.29 33-40.29 12-81.68 12Q271-314 194-391t-77-187q0-110 77-187t187-77q110 0 187 77t77 187.03q0 41.39-11 79.18Q623-461 601-429l242 242-69 69ZM381-412q70 0 118-48t48-118q0-70-48-118t-118-48q-70 0-118 48t-48 118q0 70 48 118t118 48Z" />
+                                    </svg>
+                                </button>
+                            </form>
+                            <div class="hero-toolbar">
+                                <section class="control-inline engine-inline">
+                                    <label for="engine-select">Default engine</label>
+                                    <select id="engine-select">
+                                        <option value="https://start.duckduckgo.com/?q=">DuckDuckGo</option>
+                                        <option value="https://html.duckduckgo.com/html?q=">DuckDuckGo (HTML)</option>
+                                        <option value="https://lite.duckduckgo.com/lite?q=">DuckDuckGo (Lite)</option>
+                                        <option value="https://www.google.com/search?q=">Google</option>
+                                        <option value="https://www.bing.com/search?q=">Bing</option>
+                                        <option value="https://www.startpage.com/do/search?query=">StartPage</option>
+                                        <option value="https://search.brave.com/search?q=">Brave</option>
+                                        <option value="https://www.ecosia.org/search?q=">Ecosia</option>
+                                        <option value="https://yandex.com/search/?text=">Yandex</option>
+                                        <option value="https://search.yahoo.com/search?p=">Yahoo!</option>
+                                        <option value="https://www.ask.com/web?q=">Ask</option>
+                                        <option value="https://www.qwant.com/?q=">Qwant</option>
+                                    </select>
+                                </section>
+                                <section class="control-inline mode-inline">
+                                    <span class="control-label">Insert shortcuts as</span>
+                                    <div class="mode-switch" role="group" aria-label="Shortcode mode">
+                                        <button type="button" class="mode-button is-active" data-mode="bang">!
+                                            Bang</button>
+                                        <button type="button" class="mode-button" data-mode="snap">@ Snap</button>
+                                    </div>
+                                </section>
+                            </div>
+                            <p id="route-preview" class="route-preview" aria-live="polite">Default route: DuckDuckGo.
+                            </p>
+                            <section class="quick-starts">
+                                <span class="control-label">Quick starts</span>
+                                <div id="example-chips" class="example-chips"></div>
+                            </section>
+                            <div class="hero-notes" aria-label="Usage notes">
+                                <p>Searches open in a new tab.</p>
+                                <p>Press <kbd>/</kbd> to focus the search box.</p>
+                                <p>Press <kbd>Esc</kbd> to clear the current query.</p>
+                            </div>
+                        </div>
+                    </section>
 
-    <div class="default-engine">
-        <label for="engine-select">Default Search Engine:</label>
-        <select id="engine-select">
-            <option value="https://start.duckduckgo.com/?q=">DuckDuckGo</option>
-            <option value="https://html.duckduckgo.com/html?q=">DuckDuckGo (HTML)</option>
-            <option value="https://lite.duckduckgo.com/lite?q=">DuckDuckGo (Lite)</option>
-            <option value="https://www.google.com/search?q=">Google</option>
-            <option value="https://www.bing.com/search?q=">Bing</option>
-            <option value="https://www.startpage.com/do/search?query=">StartPage</option>
-            <option value="https://search.brave.com/search?q=">Brave</option>
-            <option value="https://www.ecosia.org/search?q=">Ecosia</option>
-            <option value="https://yandex.com/search/?text=">Yandex</option>
-            <option value="https://search.yahoo.com/search?p=">Yahoo!</option>
-            <option value="https://www.ask.com/web?q=">Ask</option>
-            <option value="https://www.qwant.com/?q=">Qwant</option>
-
-        </select>
-    </div>
-</div>
-
-<div class="shortcode-list-wrap">
-    <h2>Shortcodes</h2>
-    <p>Bang Patterns - You can add a shortcode prefixed with <b>'!'</b> to the start or end of your query to
-        quickly switch to a specific search engine or website.</p>
-    <p>Snap Patterns - You can add a shortcode prefixed with <b>'@'</b> to the start or end of your query to do a
-        search in your default engine that is filtered to a specific site.</p>
-    <p>The available shortcodes are:</p>
-    <ul id="shortcode-list"></ul>
-</div>
+                    <section class="shortcode-section panel">
+                        <div class="section-heading">
+                            <div>
+                                <p class="section-kicker">Shortcodes</p>
+                                <h2>Available shortcodes</h2>
+                                <p>Use <strong>!</strong> for site-specific jumps or <strong>@</strong> to scope the
+                                    current engine.</p>
+                            </div>
+                        </div>
+                        <ul id="shortcode-list" class="shortcode-list"></ul>
+                    </section>
                 </main>
-                <footer>
-                    <div class="wrapper">
-                        <p>&copy; thechelsuk 2026
-                            <a href="#top" class="back-to-top" name="back-to-top">↑</a>
-                        </p>
-                </div>
-            </footer>
+                <footer class="site-footer">
+                    <p>&copy; thechelsuk 2026 <a href="https://thechels.uk">thechels.uk</a> - <a
+                            href="https://tools.thechels.uk">Tools</a> - <a href="#top" class="back-to-top">Back to
+                            top</a></p>
+                </footer>
             </div>
         </div>
     </body>
+
 </html>
