@@ -64,7 +64,7 @@ const shortcodes = {
     v: { url: "www.theverge.com/search?q=", desc: "The Verge" },
 };
 
-const fallbackEngine = "https://start.duckduckgo.com/?q=";
+const fallbackEngine = "https://lite.duckduckgo.com/lite?q=";
 const exampleQueries = [
     { label: "!yt ambient mix", value: "!yt ambient mix" },
     { label: "@mdn querySelector", value: "@mdn querySelector" },
@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (!currentQuery.trim()) {
-            routePreview.textContent = `Default route: ${analysis.selectedLabel}. Searches open in a new tab; use ! to jump engines or @ to pin a site.`;
+            routePreview.textContent = `The default route: ${analysis.selectedLabel}. Engine preference is set in local browser storage.`;
             return;
         }
 

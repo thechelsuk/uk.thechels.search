@@ -290,6 +290,7 @@ kbd {
 .control-deck {
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 0.75rem;
     max-width: 58rem;
     margin: 0 auto;
@@ -297,6 +298,7 @@ kbd {
 
 .search-form {
     display: grid;
+    width: 100%;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.75rem;
     align-items: stretch;
@@ -364,6 +366,7 @@ kbd {
 }
 
 .route-preview {
+    width: 100%;
     min-height: 3rem;
     margin: 0;
     padding: 0.75rem 0.95rem;
@@ -376,13 +379,17 @@ kbd {
 
 .hero-toolbar {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 0.9fr);
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
     gap: 0.7rem;
 }
 
 .control-inline,
 .quick-starts {
     display: grid;
+    width: 100%;
+    min-width: 0;
     gap: 0.65rem;
     padding: 0.85rem;
     border: 1px solid var(--line);
@@ -399,6 +406,9 @@ kbd {
 }
 
 #engine-select {
+    display: block;
+    width: 100%;
+    min-width: 0;
     padding: 0.8rem 0.9rem;
     appearance: none;
 }
@@ -406,6 +416,7 @@ kbd {
 .mode-switch,
 .example-chips {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
     gap: 0.45rem;
 }
