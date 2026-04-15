@@ -2,9 +2,9 @@ const shortcodes = globalThis.SEARCH_SHORTCODES || {};
 
 const fallbackEngine = "https://lite.duckduckgo.com/lite?q=";
 const exampleQueries = [
-    { label: "!yt ambient mix", value: "!yt ambient mix" },
+    { label: "!yt chill mix", value: "!yt chill mix" },
     { label: "@mdn querySelector", value: "@mdn querySelector" },
-    { label: "!gm Stamford Bridge", value: "!gm nearest stations" },
+    { label: "!gm nearest station", value: "!gm nearest station" },
     {
         label: "@github.com static site search",
         value: "@github.com static site search",
