@@ -87,19 +87,6 @@ select {
     --mode-accent: var(--accent-alt);
 }
 
-.page-shell::after {
-    content: "";
-    position: absolute;
-    top: 0.75rem;
-    right: 1rem;
-    width: min(14rem, 32vw);
-    height: min(14rem, 32vw);
-    border-top: 2px dashed rgba(23, 21, 22, 0.16);
-    border-right: 2px dashed rgba(23, 21, 22, 0.16);
-    border-top-right-radius: 2.25rem;
-    pointer-events: none;
-}
-
 .skip-link-ul {
     margin: 0;
     padding: 0;
