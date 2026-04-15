@@ -1,4 +1,5 @@
 const shortcodes = globalThis.SEARCH_SHORTCODES || {};
+const searchTermPlaceholder = "{query}";
 
 const fallbackEngine = "https://lite.duckduckgo.com/lite?q=";
 const exampleQueries = [
@@ -19,12 +20,34 @@ function getUrlParameter(name) {
         : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function stripSearchTermPlaceholder(url) {
+    return url.replace(searchTermPlaceholder, "");
+}
+
 function getAbsoluteUrl(url) {
-    return new URL(url.startsWith("http") ? url : `https://${url}`);
+    const normalizedUrl = stripSearchTermPlaceholder(url);
+
+    return new URL(
+        normalizedUrl.startsWith("http")
+            ? normalizedUrl
+            : `https://${normalizedUrl}`,
+    );
 }
 
 function getBaseUrl(url) {
     return getAbsoluteUrl(url).origin;
+}
+
+function getSearchTemplateUrl(url) {
+    return url.startsWith("http") ? url : `https://${url}`;
+}
+
+function buildSearchDestinationUrl(searchUrl, query) {
+    const encodedQuery = encodeURIComponent(query);
+
+    return searchUrl.includes(searchTermPlaceholder)
+        ? searchUrl.replace(searchTermPlaceholder, encodedQuery)
+        : `${searchUrl}${encodedQuery}`;
 }
 
 function normalizeExplicitSiteTarget(value) {
@@ -61,7 +84,7 @@ function findShortcode(code) {
 function findShortcodeBySearchUrl(searchUrl) {
     return (
         Object.entries(shortcodes).find(
-            ([, value]) => `https://${value.url}` === searchUrl,
+            ([, value]) => getSearchTemplateUrl(value.url) === searchUrl,
         ) || null
     );
 }
@@ -137,7 +160,7 @@ function processCode(code, isSnap) {
         key,
         label: value.desc,
         target,
-        result: `https://${value.url}`,
+        result: getSearchTemplateUrl(value.url),
     };
 }
 
@@ -221,7 +244,10 @@ function getSearchDestinationUrl(query, defaultEngine) {
         return analysis.homeUrl;
     }
 
-    return `${analysis.searchUrl}${encodeURIComponent(analysis.processedQuery)}`;
+    return buildSearchDestinationUrl(
+        analysis.searchUrl,
+        analysis.processedQuery,
+    );
 }
 
 (function () {
@@ -405,11 +431,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            searchForm.action = getSearchDestinationUrl(
-                searchInput.value.trim(),
-                engineSelect.value || fallbackEngine,
+            openInNewTab(
+                getSearchDestinationUrl(
+                    searchInput.value.trim(),
+                    engineSelect.value || fallbackEngine,
+                ),
             );
-            searchForm.submit();
         });
 
         for (const button of modeButtons) {
