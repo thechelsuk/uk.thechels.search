@@ -275,16 +275,17 @@ function openInNewTab(url) {
 }
 
 function performSearch(query, defaultEngine) {
+    openInNewTab(getSearchDestinationUrl(query, defaultEngine));
+}
+
+function getSearchDestinationUrl(query, defaultEngine) {
     const analysis = analyzeQuery(query, defaultEngine);
 
     if (!analysis.processedQuery.trim()) {
-        openInNewTab(analysis.homeUrl);
-        return;
+        return analysis.homeUrl;
     }
 
-    openInNewTab(
-        `${analysis.searchUrl}${encodeURIComponent(analysis.processedQuery)}`,
-    );
+    return `${analysis.searchUrl}${encodeURIComponent(analysis.processedQuery)}`;
 }
 
 (function () {
@@ -468,10 +469,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            performSearch(
+            searchForm.action = getSearchDestinationUrl(
                 searchInput.value.trim(),
                 engineSelect.value || fallbackEngine,
             );
+            searchForm.submit();
         });
 
         for (const button of modeButtons) {
