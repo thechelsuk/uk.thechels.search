@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+    <title id="t">Search @ thechelsuk</title>
+    <rect width="64" height="64" rx="14" fill="#171516"/>
+    <path d="M38.5 38.5 50 50" stroke="#ff6b2c" stroke-width="7.5" stroke-linecap="round"/>
+    <circle cx="28" cy="28" r="14.5" fill="#0a5cff" stroke="#f3ecde" stroke-width="5.5"/>
+    <rect x="25.75" y="18.5" width="4.5" height="12" rx="2.25" fill="#f3ecde"/>
+    <circle cx="28" cy="35.75" r="2.6" fill="#f3ecde"/>
+</svg>

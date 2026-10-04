@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*?q=
+
+Sitemap: https://search.thechels.uk/sitemap.xml
