@@ -88,6 +88,41 @@
                         "name": "thechelsuk",
                         "url": "https://thechels.uk/",
                         "sameAs": ["https://github.com/thechelsuk"]
+                    },
+                    {
+                        "@type": "FAQPage",
+                        "@id": "https://search.thechels.uk/#faq",
+                        "url": "https://search.thechels.uk/",
+                        "inLanguage": "en-GB",
+                        "isPartOf": {
+                            "@id": "https://search.thechels.uk/#website"
+                        },
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "What's the difference between a !bang and an @snap?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "A !bang sends your search straight to another site's own search, so !yt chill mix searches YouTube. An @snap keeps your default engine and adds a site: filter, so @reddit.com r/python searches Reddit through your default engine."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Which search engine does it use?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "DuckDuckGo (Lite), unless you choose another from the Default engine list. Searches with no shortcode go there too. Your choice is saved in your browser's local storage."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Can I make it my browser's search engine?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes, in browsers that let you add a custom search engine. Use the address https://search.thechels.uk/?q=%s and your !bangs and @snaps work from the address bar."
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -196,6 +231,20 @@
                         </div>
                         <ul id="shortcode-list" class="shortcode-list"></ul>
                     </section>
+                <section class="faq-section panel" id="faq">
+                    <div class="section-heading">
+                        <div>
+                            <p class="section-kicker">FAQ</p>
+                            <h2>Frequently asked questions</h2>
+                        </div>
+                    </div>
+                    <h3>What's the difference between a !bang and an @snap?</h3>
+                    <p>A <strong>!bang</strong> sends your search straight to another site's own search, so <code>!yt chill mix</code> searches YouTube. An <strong>@snap</strong> keeps your default engine and adds a <code>site:</code> filter, so <code>@reddit.com r/python</code> searches Reddit through your default engine.</p>
+                    <h3>Which search engine does it use?</h3>
+                    <p>DuckDuckGo (Lite), unless you choose another from the Default engine list. Searches with no shortcode go there too. Your choice is saved in your browser's local storage.</p>
+                    <h3>Can I make it my browser's search engine?</h3>
+                    <p>Yes, in browsers that let you add a custom search engine. Use the address <code>https://search.thechels.uk/?q=%s</code> and your !bangs and @snaps work from the address bar.</p>
+                </section>
                 </main>
                 <footer class="site-footer">
                     <p>&copy; thechelsuk 2026

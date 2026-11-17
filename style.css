@@ -204,6 +204,7 @@ select {
 
 .hero-header,
 .shortcode-section,
+.faq-section,
 .control-deck {
     position: relative;
     z-index: 1;
@@ -444,10 +445,24 @@ kbd {
     transform: translateY(-1px);
 }
 
-.shortcode-section h2 {
+.shortcode-section h2,
+.faq-section h2 {
     margin: 0.3rem 0 0.65rem;
     font-size: clamp(1.5rem, 3vw, 2rem);
     line-height: 1.08;
+}
+
+.faq-section h3 {
+    margin: 1.4rem 0 0.4rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.faq-section p:not(.section-kicker) {
+    margin: 0;
+    max-width: 68ch;
+    color: var(--muted);
+    line-height: 1.6;
 }
 
 .section-heading {
