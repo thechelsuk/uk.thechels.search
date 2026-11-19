@@ -222,15 +222,59 @@ function analyzeQuery(query, defaultEngine) {
     };
 }
 
+function getAllowedDestinationHosts() {
+    const hosts = new Set([getAbsoluteUrl(fallbackEngine).hostname]);
+
+    for (const value of Object.values(shortcodes)) {
+        for (const url of [value.url, value.base]) {
+            if (!url) {
+                continue;
+            }
+
+            try {
+                hosts.add(getAbsoluteUrl(url).hostname);
+            } catch {
+                // Skip a malformed shortcode rather than allow it.
+            }
+        }
+    }
+
+    return hosts;
+}
+
+const allowedDestinationHosts = getAllowedDestinationHosts();
+
+// Only https URLs on a known search engine's host may be opened, so a
+// tampered engine setting can't send the page to a script or another site.
+function getSafeDestinationUrl(url) {
+    let parsed;
+
+    try {
+        parsed = new URL(url);
+    } catch {
+        return null;
+    }
+
+    if (
+        parsed.protocol !== "https:" ||
+        !allowedDestinationHosts.has(parsed.hostname)
+    ) {
+        return null;
+    }
+
+    return parsed.href;
+}
+
 function openInNewTab(url) {
-    const newTab = window.open(url, "_blank", "noopener,noreferrer");
+    const safeUrl = getSafeDestinationUrl(url) || getBaseUrl(fallbackEngine);
+    const newTab = window.open(safeUrl, "_blank", "noopener,noreferrer");
 
     if (newTab) {
         newTab.opener = null;
         return;
     }
 
-    window.location.assign(url);
+    window.location.assign(safeUrl);
 }
 
 function performSearch(query, defaultEngine) {
